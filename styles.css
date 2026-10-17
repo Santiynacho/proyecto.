@@ -1,0 +1,85 @@
+/* Fase 3: estilos del sitio Rostros de la Santidad Escolapia */
+:root {
+    --navy: #18324b;
+    --blue: #245b78;
+    --gold: #d4a64a;
+    --cream: #f7f4ed;
+    --paper: #ffffff;
+    --ink: #263442;
+    --muted: #5b6874;
+    --border: #e3dfd5;
+    --shadow: 0 10px 28px rgba(24, 50, 75, .09);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+header {
+    padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, rgba(24,50,75,.97), rgba(36,91,120,.91));
+    border-bottom: 5px solid var(--gold);
+}
+header h1 { max-width: 950px; margin: 0 auto .5rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; letter-spacing: -.035em; }
+header p { margin: .75rem 0 0; color: #f5dfae; font-size: 1.1rem; }
+nav { position: relative; z-index: 1; background: var(--paper); box-shadow: 0 3px 12px rgba(24,50,75,.06); }
+nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem; max-width: 1100px; margin: 0 auto; padding: .65rem 1rem; list-style: none; }
+nav a { display: block; padding: .55rem .8rem; color: var(--navy); text-decoration: none; font-size: .93rem; font-weight: 650; border-radius: 8px; transition: background .2s, color .2s; }
+nav a:hover, nav a:focus-visible { background: #f3e7c9; color: var(--navy); outline: none; }
+main { width: min(100% - 2rem, 1000px); margin: 2.25rem auto 4rem; }
+section { margin: 0 0 1.5rem; padding: clamp(1.25rem, 4vw, 2.5rem); background: var(--paper); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
+h2 { margin: 0 0 1rem; color: var(--navy); font-size: clamp(1.55rem, 3vw, 2.1rem); line-height: 1.25; }
+h2::after { display: block; width: 3.25rem; height: 4px; margin-top: .65rem; content: ""; background: var(--gold); border-radius: 99px; }
+p { margin: .75rem 0; }
+#biografia img { display: block; float: center; width: min(38%, 260px); max-height: 340px; margin: .25rem 0 1rem 1.5rem; object-fit: cover; border: 5px solid white; border-radius: 14px; box-shadow: var(--shadow); }
+#biografia::after { display: block; clear: both; content: ""; }
+#linea-tiempo ul { padding-left: 1.25rem; }
+#linea-tiempo li { margin: .65rem 0; padding-left: .3rem; }
+#linea-tiempo li::marker { color: var(--gold); }
+#galeria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem 1rem; align-items: start; }
+#galeria h2 { grid-column: 1 / -1; }
+#galeria img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 14px rgba(24,50,75,.12); }
+#galeria p { margin: 0; color: var(--muted); font-size: .92rem; }
+footer { padding: 2.5rem 1.25rem; color: #eaf0f5; background: var(--navy); text-align: center; }
+footer h2 { color: white; }
+footer h2::after { margin-left: auto; margin-right: auto; }
+footer ul { display: inline-block; margin: .5rem auto 1rem; padding-left: 1.25rem; text-align: left; }
+footer a { color: #f5dfae; }
+.copyright { margin-top: 1.5rem; color: #c5d0da; font-size: .85rem; }
+.quiz-section { border-top: 4px solid var(--gold); }
+.quiz-question { min-width: 0; margin: 1.25rem 0; padding: 1rem 1.15rem; border: 1px solid var(--border); border-radius: 12px; }
+.quiz-question legend { padding: 0 .35rem; color: var(--navy); font-weight: 750; }
+.quiz-question label { display: flex; align-items: flex-start; gap: .65rem; margin: .55rem 0; padding: .45rem .6rem; border-radius: 8px; cursor: pointer; }
+.quiz-question label:hover { background: #f7f4ed; }
+.quiz-question input { margin-top: .45rem; accent-color: var(--blue); }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+.button { min-height: 44px; padding: .7rem 1.1rem; border: 2px solid transparent; border-radius: 9px; font: inherit; font-weight: 700; cursor: pointer; transition: transform .15s, background .15s; }
+.button:hover { transform: translateY(-1px); }
+.button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.button-primary { color: white; background: var(--blue); }
+.button-primary:hover { background: var(--navy); }
+.button-secondary { color: var(--navy); background: white; border-color: var(--border); }
+.quiz-result { min-height: 1.75rem; margin-top: 1rem; padding: .8rem 1rem; border-radius: 10px; font-weight: 700; }
+.quiz-result:empty { display: none; }
+.quiz-result.success { color: #155c3a; background: #e5f5eb; }
+.quiz-result.partial { color: #704d09; background: #fff2cf; }
+@media (max-width: 650px) {
+    nav ul { gap: 0; padding: .5rem; }
+    nav a { padding: .45rem .55rem; font-size: .85rem; }
+    main { width: min(100% - 1rem, 1000px); margin-top: 1rem; }
+    section { padding: 1.15rem; border-radius: 13px; }
+    #biografia img { float: none; width: min(100%, 300px); max-height: 380px; margin: 0 auto 1.25rem; }
+    #galeria { grid-template-columns: 1fr; }
+    #galeria h2 { grid-column: auto; }
+    #galeria img { aspect-ratio: 16 / 9; }
+    .quiz-actions { flex-direction: column; }
+    .button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
