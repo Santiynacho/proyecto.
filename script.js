@@ -1,33 +1,81 @@
-// Fase 4: cuestionario interactivo sobre el Beato David Carlos de Vergara Marañón.
-const quizForm = document.querySelector("#quiz-form");
-const quizResult = document.querySelector("#quiz-result");
-const correctAnswers = { q1: "b", q2: "a", q3: "c", q4: "a", q5: "b" };
-const totalQuestions = Object.keys(correctAnswers).length;
+// FASE 4: actividad interactiva sobre el Beato David Carlos.
+// Usamos variables, getElementById(), addEventListener() e if / else.
 
-quizForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const answers = new FormData(quizForm);
-    let score = 0;
+// Buscamos en el HTML los elementos que vamos a utilizar.
+const botonComprobar = document.getElementById("check-answer");
+const botonReintentar = document.getElementById("retry-quiz");
+const mensaje = document.getElementById("quiz-feedback");
+const resultado = document.getElementById("quiz-result");
+const formulario = document.getElementById("quiz-form");
 
-    for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-        if (answers.get(question) === correctAnswer) score++;
+// Esta variable guarda la cantidad de respuestas correctas.
+let puntaje = 0;
+
+// Cuando se hace clic en "Comprobar respuestas", se revisan las opciones.
+botonComprobar.addEventListener("click", function() {
+    puntaje = 0;
+
+    // Pregunta 1: la respuesta correcta es la opción A.
+    if (document.getElementById("p1a").checked) {
+        puntaje = puntaje + 1;
     }
 
-    const percentage = Math.round((score / totalQuestions) * 100);
-    let message;
-    if (score === totalQuestions) {
-        message = `¡Excelente! Respondiste correctamente ${score} de ${totalQuestions} preguntas (${percentage}%).`;
-    } else if (score >= 3) {
-        message = `¡Muy bien! Respondiste correctamente ${score} de ${totalQuestions} preguntas (${percentage}%). Podés repasar el contenido y volver a intentarlo.`;
+    // Pregunta 2: la respuesta correcta es la opción B.
+    if (document.getElementById("p2b").checked) {
+        puntaje = puntaje + 1;
+    }
+
+    // Pregunta 3: la respuesta correcta es la opción A.
+    if (document.getElementById("p3a").checked) {
+        puntaje = puntaje + 1;
+    }
+
+    // Pregunta 4: la respuesta correcta es la opción C.
+    if (document.getElementById("p4c").checked) {
+        puntaje = puntaje + 1;
+    }
+
+    // Pregunta 5: la respuesta correcta es la opción A.
+    if (document.getElementById("p5a").checked) {
+        puntaje = puntaje + 1;
+    }
+
+    // Mostramos el resultado según el puntaje obtenido.
+    if (puntaje == 5) {
+        mensaje.textContent = "¡Excelente! Todas las respuestas son correctas.";
+    } else if (puntaje >= 3) {
+        mensaje.textContent = "¡Muy bien! Conocés varios datos de su historia.";
     } else {
-        message = `Obtuviste ${score} de ${totalQuestions} respuestas correctas (${percentage}%). Te recomendamos releer la biografía y probar otra vez.`;
+        mensaje.textContent = "Podés volver a leer la página e intentarlo otra vez.";
     }
 
-    quizResult.textContent = message;
-    quizResult.className = `quiz-result ${score >= 3 ? "success" : "partial"}`;
+    resultado.textContent = "Tu puntaje es: " + puntaje + " de 5.";
+
+    // Ocultamos el botón de comprobar y mostramos el de volver a intentar.
+    botonComprobar.hidden = true;
+    botonReintentar.hidden = false;
 });
 
-quizForm.addEventListener("reset", () => {
-    quizResult.textContent = "";
-    quizResult.className = "quiz-result";
+// El botón permite borrar las respuestas y comenzar nuevamente.
+botonReintentar.addEventListener("click", function() {
+    formulario.reset();
+    puntaje = 0;
+    mensaje.textContent = "";
+    resultado.textContent = "";
+    botonComprobar.hidden = false;
+    botonReintentar.hidden = true;
+});
+
+// Menú para celulares: al hacer clic se muestra u oculta la navegación.
+const botonMenu = document.getElementById("nav-links");
+const abrirMenu = document.getElementById("menu-toggle");
+
+abrirMenu.addEventListener("click", function() {
+    if (botonMenu.classList.contains("is-open")) {
+        botonMenu.classList.remove("is-open");
+        abrirMenu.setAttribute("aria-expanded", "false");
+    } else {
+        botonMenu.classList.add("is-open");
+        abrirMenu.setAttribute("aria-expanded", "true");
+    }
 });
